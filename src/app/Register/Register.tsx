@@ -18,7 +18,7 @@ export const Register = () => {
              body:JSON.stringify(dataObj),
             })
             const result = await res.json();
-            const {acknowledged,insertedId}=result;
+            const { acknowledged,insertedId }=result;
             if(acknowledged && insertedId){
                 alert("success")
             } else{
