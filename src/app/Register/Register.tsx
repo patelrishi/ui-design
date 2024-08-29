@@ -9,7 +9,7 @@ export const Register = () => {
     const fnRegister = async () => {
         try {
             var dataObj = { "data": data}
-             const res = await fetch('http://localhost:3030/students/register',{
+             const res = await fetch('http://ui-design-server.vercel.app/students/register',{
              method:'post',
              headers:{'Content-type':'application/json',
                      //sending json
@@ -18,9 +18,16 @@ export const Register = () => {
              body:JSON.stringify(dataObj),
             })
             const result = await res.json();
-            console.log(result);
-        } catch(ex){
+            const {acknowledged,insertedId}=result;
+            if(acknowledged && insertedId){
+                alert("success")
+            } else{
+                alert("failure")
+            }
+        
+        } catch(ex:any){
            console.error(ex);
+           alert(ex.message);
         }
     }
     const handleChange=(eve:any)=>{
